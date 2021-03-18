@@ -13,5 +13,5 @@ urlpatterns = [
     path("posts/", PV.PostEndpoint.as_view()),
     path("posts/<int:pk>", PV.PostDetailedEndpoint.as_view()),
     # main
-    path("posts/upvote/<int:pk>", MV.upvote_post),
+    path("posts/upvote/<int:pk>", MV.UpvotesEndpoint.as_view()),
 ]
