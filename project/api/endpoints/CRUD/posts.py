@@ -35,10 +35,17 @@ class PostDetailedEndpoint(APIView):
 
     def patch(self, request, pk):
         post_obj = self.get_post(pk)
-        serialized = PostSerializer(post_obj, data=request.data, partial=True)
+        serialized = PostSerializer(
+            post_obj,
+            data=request.data,
+            partial=True,
+        )
         if serialized.is_valid(raise_exception=True):
             serialized.save()
-            response = {"data": serialized.data, "message": "All good, updated"}
+            response = {
+                "data": serialized.data,
+                "message": "All good, updated",
+            }
             return Response(response, status=200)
         return Response({"message": "Error - not updated"}, status=400)
 

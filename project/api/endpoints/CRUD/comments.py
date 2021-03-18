@@ -30,7 +30,11 @@ def create_comment(request):
 @api_view(["POST"])
 def update_comment(request, pk):
     comment_obj = get_object_or_404(Comment, pk=pk)
-    serialized = CommentSerializer(comment_obj, data=request.data, partial=True)
+    serialized = CommentSerializer(
+        comment_obj,
+        data=request.data,
+        partial=True,
+    )
     if serialized.is_valid(raise_exception=True):
         serialized.save()
         response = {"data": serialized.data, "message": "All good, updated"}
