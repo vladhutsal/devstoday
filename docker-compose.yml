@@ -5,14 +5,15 @@ services:
     volumes:
       - ./poster_commenter_db:/var/lib/postgresql/data/pgdata
     environment:
-      - POSTGRES_DB=poster_commenter
-      - POSTGRES_USER=tdeveloper
-      - POSTGRES_PASSWORD=tdeveloper
-      - PGDATA=/var/lib/postgresql/data/pgdata
+      POSTGRES_DB: "poster_commenter"
+      POSTGRES_USER: "tdeveloper"
+      POSTGRES_PASSWORD: "tdeveloper"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
 
   backend:
     depends_on:
       - db
+      - rabbit
     build:
       context: ./project
       dockerfile: Dockerfile
@@ -21,3 +22,33 @@ services:
     volumes:
       - ./project:/app
     command: python3 manage.py runserver 0.0.0.0:8000
+  
+  rabbit:
+    image: "rabbitmq:3"
+    environment:
+      RABBITMQ_NODENAME: "rabbit@localhost"
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    ports:
+      - "5672:5672"
+  
+  celery:
+    build: 
+      context: ./project
+      dockerfile: celery.dockerfile
+    command: celery -A project worker -l info
+    volumes:
+      - ./project:/app
+    depends_on:
+      - rabbit
+  
+  celery-beat:
+    build: 
+      context: ./project
+      dockerfile: celery.dockerfile
+    command: celery -A project beat -l info
+    volumes:
+      - ./project:/app
+    depends_on:
+      - rabbit

@@ -14,3 +14,7 @@ class Comment(models.Model):
     author_name = models.CharField(max_length=50, blank=False)
     content = models.CharField(max_length=500, blank=False)
     creation_date = models.DateField(auto_now=False, auto_now_add=True)
+
+
+class Like(models.Model):
+    post = models.ForeignKey("Post", on_delete=models.CASCADE)

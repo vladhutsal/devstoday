@@ -1,4 +1,6 @@
 from pathlib import Path
+from celery.schedules import crontab
+import project.tasks
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -100,7 +102,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Europe/Kiev"
 
 USE_I18N = True
 
@@ -113,3 +115,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = "/static/"
+
+CELERY_BROKER_URL = "amqp://rabbitmq:rabbitmq@rabbit:5672"
+CELERY_BEAT_SCHEDULE = {
+    "sample_task": {
+        "task": "project.tasks.reset_likes",
+        "schedule": crontab(minute=0, hour=0),
+    },
+}
