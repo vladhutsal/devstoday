@@ -14,7 +14,6 @@ SECRET_KEY = "e(f+)jn&i)js-%)!8bm^#=j7p53eibke$^ous3!!zo8avjqjn+"
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-BACKGROUND_TASK_RUN_ASYNC = True
 
 # Application definition
 
@@ -28,7 +27,6 @@ INSTALLED_APPS = [
     "api",
     "rest_framework",
     "corsheaders",
-    "background_task",
 ]
 
 MIDDLEWARE = [
