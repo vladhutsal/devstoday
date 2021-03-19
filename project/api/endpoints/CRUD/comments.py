@@ -8,7 +8,7 @@ from rest_framework.response import Response
 
 
 @api_view(["GET"])
-def read_post_comments(request, pk):
+def read_post_comments(request, pk: int):
     post_qs = get_object_or_404(Post, pk=pk)
     comments_qs = post_qs.comment_set
     serialized = CommentSerializer(comments_qs, many=True)

@@ -120,8 +120,4 @@ CELERY_BEAT_SCHEDULE = {
         "task": "project.tasks.reset_likes",
         "schedule": crontab(minute=0, hour=0),
     },
-    "test_celery": {
-        "task": "project.tasks.toogle_test_celery",
-        "schedule": project.tasks._SCHED.get_timer(),
-    },
 }

@@ -20,9 +20,3 @@ class UpvotesEndpoint(APIView):
         likes_count = post_obj.like_set.count()
         response = {"data": likes_count}
         return Response(response, status=200)
-
-
-class TestCeleryEndpoint(APIView):
-    def post(self, request):
-        togled_to: str = project.tasks._SCHED.toogle_timer()
-        return Response({"message": f"celery will repeat {togled_to}"}, status=200)
