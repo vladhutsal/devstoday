@@ -12,4 +12,3 @@ RUN pip3 install -r req.txt
 
 COPY . .
 ENTRYPOINT ["/app/entrypoint.sh"]
-EXPOSE 8000

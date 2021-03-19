@@ -1,9 +1,10 @@
 from rest_framework import serializers
-from .models import Post, Comment, Like
+from .models import Post, Comment
 
 
 class PostSerializer(serializers.ModelSerializer):
     upvotes = serializers.SerializerMethodField("get_upvotes")
+
     class Meta:
         model = Post
         fields = ("pk", "title", "link", "author_name", "upvotes", "creation_date")

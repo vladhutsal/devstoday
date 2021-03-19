@@ -1,6 +1,6 @@
 from pathlib import Path
 from celery.schedules import crontab
-import project.tasks
+import project.tasks  # noqa F401
 import dj_database_url
 import os
 
@@ -117,6 +117,6 @@ CELERY_BROKER_URL = os.environ.get(
 CELERY_BEAT_SCHEDULE = {
     "sample_task": {
         "task": "project.tasks.reset_likes",
-        "schedule": 2.0,
+        "schedule": crontab(minute=0, hour=0),
     },
 }
