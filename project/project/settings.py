@@ -1,6 +1,8 @@
 from pathlib import Path
 from celery.schedules import crontab
 import project.tasks
+import dj_database_url
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -72,10 +74,12 @@ DATABASES = {
         "NAME": "poster_commenter",
         "USER": "tdeveloper",
         "PASSWORD": "tdeveloper",
-        "HOST": "postgres://oljpcydxqkurqc:052d51200fd6eb339c7cc0603192e61a50329e2d07f48130de504b8aae8280f7@ec2-54-73-147-133.eu-west-1.compute.amazonaws.com",
-        "PORT": '5432/dcmicb7atlirua',
+        "HOST": "db",
+        "PORT": 5432,
     }
 }
+
+DATABASES["default"] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 
 # Password validation
@@ -116,7 +120,9 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-CELERY_BROKER_URL = "amqps://etknuvgf:owf_5Vke_ovAGHkOwkcTNJreNbo77YZD@crow.rmq.cloudamqp.com/etknuvgf"
+CELERY_BROKER_URL = os.environ.get(
+    "CLOUDAMQP_URL", "amqp://rabbitmq:rabbitmq@rabbit:5672"
+)
 CELERY_BEAT_SCHEDULE = {
     "sample_task": {
         "task": "project.tasks.reset_likes",
