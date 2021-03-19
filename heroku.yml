@@ -13,8 +13,8 @@ build:
 
 release:
   command:
-    - ./deployment-tasks.sh
-  image: worker
+    - ./project/dep-task.sh
+  image: web
 
 run:
   web: python3 manage.py runserver 0.0.0.0:8000
