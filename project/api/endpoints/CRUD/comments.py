@@ -28,7 +28,7 @@ def create_comment(request):
 
 
 @api_view(["POST"])
-def update_comment(request, pk):
+def update_comment(request, pk: int):
     comment_obj = get_object_or_404(Comment, pk=pk)
     serialized = CommentSerializer(
         comment_obj,
@@ -44,7 +44,7 @@ def update_comment(request, pk):
 
 
 @api_view(["DELETE"])
-def delete_comment(request, pk):
+def delete_comment(request, pk: int):
     comment_obj = get_object_or_404(Comment, pk=pk)
     if comment_obj.delete()[0] > 0:
         return Response({"message": "All good, deleted"}, status=200)

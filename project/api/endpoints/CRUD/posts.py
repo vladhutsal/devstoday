@@ -24,16 +24,16 @@ class PostEndpoint(APIView):
 
 
 class PostDetailedEndpoint(APIView):
-    def get_post(self, pk):
+    def get_post(self, pk: int):
         return get_object_or_404(Post, pk=pk)
 
-    def get(self, request, pk):
+    def get(self, request, pk: int):
         post_obj = self.get_post(pk)
         serialized = PostSerializer(post_obj)
         response = {"data": serialized.data}
         return Response(response, status=200)
 
-    def patch(self, request, pk):
+    def patch(self, request, pk: int):
         post_obj = self.get_post(pk)
         serialized = PostSerializer(
             post_obj,
@@ -49,7 +49,7 @@ class PostDetailedEndpoint(APIView):
             return Response(response, status=200)
         return Response({"message": "Error - not updated"}, status=400)
 
-    def delete(self, request, pk):
+    def delete(self, request, pk: int):
         post_obj = self.get_post(pk)
         if post_obj.delete()[0] > 0:
             return Response({"message": "All good, deleted"}, status=200)
