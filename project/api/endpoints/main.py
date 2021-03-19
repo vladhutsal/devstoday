@@ -8,14 +8,14 @@ from django.shortcuts import get_object_or_404
 
 
 class UpvotesEndpoint(APIView):
-    def post(self, request, pk):
+    def post(self, request, pk: int):
         post_obj = get_object_or_404(Post, pk=pk)
         like_obj = Like.objects.create(post=post_obj)
         like_obj.save()
         response = {"message": f"Post #{post_obj.pk} ve' been liked"}
         return Response(response, status=200)
 
-    def get(self, request, pk):
+    def get(self, request, pk: int):
         post_obj = get_object_or_404(Post, pk=pk)
         likes_count = post_obj.like_set.count()
         response = {"data": likes_count}
@@ -24,4 +24,5 @@ class UpvotesEndpoint(APIView):
 
 class TestCeleryEndpoint(APIView):
     def post(self, request):
-        project.tasks._SCHED = 2.0 if project.tasks._SCHED == 0.0 else 0.0
+        togled_to: str = project.tasks._SCHED.toogle_timer()
+        return Response({"message": f"celery will repeat {togled_to}"}, status=200)

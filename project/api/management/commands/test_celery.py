@@ -1,7 +1,5 @@
 from django.core.management import BaseCommand
 
-SCHED = 0.0
-
 
 class Command(BaseCommand):
     help = "Test if Celery working well"
