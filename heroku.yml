@@ -8,15 +8,15 @@ setup:
 build:
   docker:
     web: /project/Dockerfile
-    celery: /project/celery.dockerfile
-    celerybeat: /project/celery.dockerfile
+    # celery: /project/celery.dockerfile
+    # celerybeat: /project/celery.dockerfile
 
-release:
-  command:
-    - ./project/entrypoint.sh
-  image: web
+# release:
+#   command:
+#     - ./project/entrypoint.sh
+#   image: web
 
 run:
   web: python3 manage.py runserver 0.0.0.0:8000
-  celery: celery -A project worker -l info
-  celerybeat: celery -A project beat -l info
+  # celery: celery -A project worker -l info
+  # celerybeat: celery -A project beat -l info
