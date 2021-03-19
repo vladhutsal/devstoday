@@ -14,4 +14,5 @@ urlpatterns = [
     path("posts/<int:pk>", PV.PostDetailedEndpoint.as_view()),
     # main
     path("posts/upvote/<int:pk>", MV.UpvotesEndpoint.as_view()),
+    path("test-celery", MV.TestCeleryEndpoint.as_view())
 ]
