@@ -13,5 +13,5 @@ build:
 
 run:
   web: gunicorn project.wsgi:application --bind 0.0.0.0:$PORT
-  celery: celery -A project worker -l info
-  celerybeat: celery -A project beat -l info
+  celery: celery -A project worker --beat -l info
+  # celerybeat: celery -A project beat -l info
