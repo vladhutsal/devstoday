@@ -72,8 +72,8 @@ DATABASES = {
         "NAME": "poster_commenter",
         "USER": "tdeveloper",
         "PASSWORD": "tdeveloper",
-        "HOST": "db",
-        "PORT": 5432,
+        "HOST": "postgres://oljpcydxqkurqc:052d51200fd6eb339c7cc0603192e61a50329e2d07f48130de504b8aae8280f7@ec2-54-73-147-133.eu-west-1.compute.amazonaws.com",
+        "PORT": '5432/dcmicb7atlirua',
     }
 }
 
@@ -116,7 +116,7 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-CELERY_BROKER_URL = "amqp://rabbitmq:rabbitmq@rabbit:5672"
+CELERY_BROKER_URL = "amqps://etknuvgf:owf_5Vke_ovAGHkOwkcTNJreNbo77YZD@crow.rmq.cloudamqp.com/etknuvgf"
 CELERY_BEAT_SCHEDULE = {
     "sample_task": {
         "task": "project.tasks.reset_likes",
