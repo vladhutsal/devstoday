@@ -117,6 +117,6 @@ CELERY_BROKER_URL = os.environ.get(
 CELERY_BEAT_SCHEDULE = {
     "sample_task": {
         "task": "project.tasks.reset_likes",
-        "schedule": crontab(minute=0, hour=0),
+        "schedule": 2.0,
     },
 }
