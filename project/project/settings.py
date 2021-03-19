@@ -114,9 +114,14 @@ STATIC_URL = "/static/"
 CELERY_BROKER_URL = os.environ.get(
     "CLOUDAMQP_URL", "amqp://rabbitmq:rabbitmq@rabbit:5672"
 )
+
 CELERY_BEAT_SCHEDULE = {
-    "sample_task": {
+    "reset_likes": {
         "task": "project.tasks.reset_likes",
         "schedule": crontab(minute=0, hour=0),
+    },
+    "test_celery": {
+        "task": "project.tasks.toogle_test_celery",
+        "schedule": project.tasks._SCHED,
     },
 }

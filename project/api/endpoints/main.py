@@ -1,4 +1,5 @@
 from api.models import Post, Like
+import project.tasks
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -19,3 +20,8 @@ class UpvotesEndpoint(APIView):
         likes_count = post_obj.like_set.count()
         response = {"data": likes_count}
         return Response(response, status=200)
+
+
+class TestCeleryEndpoint(APIView):
+    def post(self, request):
+        project.tasks._SCHED = 2.0 if project.tasks._SCHED == 0.0 else 0.0
