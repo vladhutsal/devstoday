@@ -1,9 +1,8 @@
-## devstoday
+## devstoday HEROKU branch
 
-### Instalation:
-Works well on Ubuntu 20.10
-1. ``` git clone git@github.com:vladhutsal/devstoday.git ```
+This branch is being deployed using Heroku.
+There are two containers (Django and Celery) and two addons (cloudamqp as message broker, postgres as DB).
 
-2. Change dir to the `devstoday`, and run `docker-compose up`. This will build and run two containers - devtodays_db and devtodays_backend.
-
-**Postman collection:** https://www.getpostman.com/collections/4746ac593e6ada9a0905
+### Test API:
+1. Import Postman "Poster_commenter_API" collection to your workspace - [LINK TO COLLECTION](https://www.getpostman.com/collections/4746ac593e6ada9a0905)
+2. Choose HEROKU environment - this will change ```baseUrl``` default variable to Heroku app URL.
