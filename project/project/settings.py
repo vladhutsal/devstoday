@@ -122,6 +122,6 @@ CELERY_BEAT_SCHEDULE = {
     },
     "test_celery": {
         "task": "project.tasks.toogle_test_celery",
-        "schedule": project.tasks._SCHED.get_timer,
+        "schedule": project.tasks._SCHED.get_timer(),
     },
 }
