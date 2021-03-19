@@ -1,7 +1,10 @@
 ## devstoday local branch
 
-- Clone this branch to play with API localy, using Docker.
-- Clone [HEROKU branch](https://github.com/vladhutsal/devstoday/tree/heroku) to play with Heroku deployed API.
+### Branches:
+- **[Master branch](https://github.com/vladhutsal/devstoday/tree/master)** - local Docker compose version.
+- [**HEROKU branch**](https://github.com/vladhutsal/devstoday/tree/heroku) Heroku deployed version.
+
+### Links:
 - **Postman collection:** https://www.getpostman.com/collections/4746ac593e6ada9a0905
 - **Heroku URL to fetch posts:** https://devstoday.herokuapp.com/api/posts/
 
