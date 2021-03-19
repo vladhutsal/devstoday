@@ -7,9 +7,9 @@ setup:
 
 build:
   docker:
-    web: Dockerfile
-    celery: celery.dockerfile
-    celerybeat: celery.dockerfile
+    web: ./project/Dockerfile
+    celery: /project/celery.dockerfile
+    celerybeat: /project/celery.dockerfile
 
 release:
   command:
