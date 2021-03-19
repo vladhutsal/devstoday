@@ -17,6 +17,6 @@ build:
 #   image: web
 
 run:
-  web: python3 manage.py runserver 0.0.0.0:8000
+  web: gunicorn project.wsgi:application --bind 0.0.0.0:$PORT
   # celery: celery -A project worker -l info
   # celerybeat: celery -A project beat -l info
