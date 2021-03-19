@@ -11,4 +11,4 @@ COPY ./req.txt .
 RUN pip3 install -r req.txt
 
 COPY . .
-ENTRYPOINT ["/app/entrypoint.sh"]
+# ENTRYPOINT ["/app/entrypoint.sh"]

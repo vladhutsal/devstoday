@@ -11,10 +11,10 @@ build:
     celery: /project/celery.dockerfile
     celerybeat: /project/celery.dockerfile
 
-# release:
-#   command:
-#     - ./project/dep-task.sh
-#   image: web
+release:
+  command:
+    - ./project/dep-task.sh
+  image: web
 
 run:
   web: python3 manage.py runserver 0.0.0.0:8000
