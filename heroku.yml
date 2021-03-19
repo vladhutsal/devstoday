@@ -7,13 +7,13 @@ setup:
 
 build:
   docker:
-    web: ./project/Dockerfile
+    web: /project/Dockerfile
     celery: /project/celery.dockerfile
     celerybeat: /project/celery.dockerfile
 
 release:
   command:
-    - ./project/dep-task.sh
+    - ./project/entrypoint.sh
   image: web
 
 run:
